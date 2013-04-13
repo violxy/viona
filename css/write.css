@@ -1,17 +1,16 @@
 div
 {
 	text-align: justify;
-
 	font-family:"Libre Baskerville";
 	font-size: 20px;
 	line-height: 115%;
-	margin-bottom: 10px
+	margin-bottom: 0px
 }
 
 hspecial
 {
 	color: #000000;
-	font-size: 44px;
+	font-size: 40px;
 	line-height: 105%;
 }
 
@@ -48,14 +47,6 @@ blockquote
 {
 	font-size: 32px;
 	line-height: 1.2em;
-}
-
-cite
-{
-	font-size: 24px;
-	line-height: 2em;
-	font-style: italic;
-	text-align: right;
 }
 
 a:link{color: #000000; text-decoration: none;}
