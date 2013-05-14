@@ -1,0 +1,130 @@
+body
+{
+  background-color: #242424;
+  color: #cbcbcb;
+  font-family: "Open Sans Condensed", Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+filler
+{
+  padding-top: 40px;
+}
+
+hspecial
+{
+  font-family: "Raleway", Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 36px; 
+  color: #ffc300;
+  line-height: 1.5em;
+}
+
+p
+{
+  font-size: 24px;
+  line-height: 1.2em;
+}
+
+address
+{
+  margin-top: 30px;
+}
+
+a:link{color: #cbcbcb; text-decoration: none;}
+a:visited{color: #ffc300; text-decoration: none;}
+a:hover{color:#ffffff; text-decoration: none;}
+a:active{color:#ff0000; text-decoration: none;}
+
+
+#imgmenu {
+    padding-top: 3em; 
+   }
+
+#imgmenu {
+    text-align: center;
+   }
+   #imgmenu li {
+    display: inline;
+   }
+   #imgmenu a {
+    display: inline-block;
+    width: 220px;
+    height: 50px;
+   }
+  #one a {
+    background: url('menu.png') no-repeat 0 top;
+   }
+   #two a {
+    background: url('menu.png') no-repeat -270px top;
+   }
+   #three a {
+    background: url('menu.png') no-repeat -555px top;
+   }
+    #four a {
+    background: url('menu.png') no-repeat -860px top;
+   }
+#imgmenu {
+    position: relative;
+   }
+#imgmenu span {
+    position: absolute; 
+    left: 0; 
+    right: 0;
+    top: 1em;
+    color: #cbcbcb; 
+   }
+
+#imgmenu a {
+    display: inline-block;
+    width: 220x;
+    height: 50px;
+    text-indent: 20px;
+   }
+   #imgmenu span {
+    text-indent: 0;
+   }
+
+#imgmenu span {
+    display:none;
+   }
+   #imgmenu a:hover span {
+    margin-top: 10%;
+    display:inline-block;
+   } 
+
+#pagemouse {
+position: relative;
+width: 657px;
+height: 185px;
+background: #ffffff url(vio2.png) no-repeat;
+padding: 0;
+}
+
+#pagemouse li {
+display: block;
+position: absolute;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#pagemouse a {
+display: block;
+text-indent: -9999px;
+text-decoration: none;
+outline: none;
+cursor: default;
+}
+
+/* position on the image (z-index goes here) */
+#index {left: 0px; top: 0px;}
+#cv {left: 500px; top: 150px;}
+
+/* width & height */
+#index a {width: 500px; height: 185px;}
+#cv a {width: 157px; height: 185px;}
+
+
+/* hover image position */
+#write a:hover {background: url(vio2.png) 0px 0px no-repeat;}
+#tech a:hover {background: url(vio2.png) 0px 0px no-repeat; }

@@ -1,0 +1,42 @@
+body {
+   margin-top:12%;
+}
+
+/* Link styling */
+
+#titlepagemouse {
+position: relative;
+width: 800px;
+height: 160px;
+background: #ffffff url(vionab.png) no-repeat;
+padding: 0;
+}
+
+#titlepagemouse li {
+display: block;
+position: absolute;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#titlepagemouse a {
+display: block;
+text-indent: -9999px;
+text-decoration: none;
+outline: none;
+cursor: default;
+}
+
+/* position on the image (z-index goes here) */
+#tech {left: 0px; top: 0px;}
+#write {left: 0px; top: 0px;}
+
+/* width & height */
+#write a {width: 800px; height: 160px;}
+#tech a {width: 400px; height: 160px;}
+
+
+/* hover image position */
+#write a:hover {background: url(viona.png) 0px 0px no-repeat;}
+#tech a:hover {background: url(vionaline.png) 0px 0px no-repeat; }
