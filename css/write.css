@@ -7,6 +7,10 @@ div
 	margin-bottom: 0px
 }
 
+div#preload {
+display: none;
+}
+
 hspecial
 {
 	color: #000000;

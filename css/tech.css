@@ -5,6 +5,10 @@ body
   font-family: "Open Sans Condensed", Helvetica, "Helvetica Neue", Arial, sans-serif;
 }
 
+div#preload {
+display: none;
+}
+
 filler
 {
   padding-top: 40px;
