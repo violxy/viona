@@ -12,10 +12,9 @@
             if (processedWord == "") {
                 continue;
             }
-            console.log(processedWord);
             if (processedWord in dictionary) {
                 var newIndex = i+1
-                var alertString = "There was a repeat at word number "+ newIndex + ", "+ result[i] + ".";
+                var alertString = "The first repeat found was at word number "+ newIndex + ", "+ result[i] + ".";
                 alert(alertString);
                 printOkay = false;
                 break;
@@ -27,9 +26,34 @@
             alert("No repeats found!")
         }
     }
+    function checkAllWords() {
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var checkingDictionary = {};
+        var storingDictionary = {};
+        for (var i = 0; i < result.length; i++) {
+            var processedWord = result[i].toLowerCase();
+            processedWord = processedWord.replace(/[^a-z]/g, '');
+            if (processedWord == "") {
+                continue;
+            }
+            if (processedWord in checkingDictionary) {
+                var newIndex = i+1;
+                storingDictionary[i] = [newIndex, result[i]];
+            } else {
+               checkingDictionary[processedWord] = true
+            }
+        };
+        var printString = "Found repeats at:\n"
+        for (var key in storingDictionary) {
+           printString = printString + "word number "+ storingDictionary[key][0] + ", " + storingDictionary[key][1] + "\n";
+        };
+        alert(printString);
+    }
 </script>
 <body>
     <input type = "text" id = "textToTest" style = "width: 300px;">
-    <input type = "submit" id = "submitButton" value = "Check For Repeated Words" onclick = "checkWords()">
+    <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
+    <input type = "submit" id = "findAllButton" value = "Gives All Repeated words" onclick = "checkAllWords()">
 </body>
 </html>
