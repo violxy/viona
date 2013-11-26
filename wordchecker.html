@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700|Raleway:400,700,900,200' rel='stylesheet' type='text/css'>
+<script type = "text/css">
+.text {
+    font-family: "Open Sans Condensed", Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+</script>
 <script type="text/javascript">
     function checkWords() {
         var testText = document.getElementById("textToTest").value;
@@ -28,6 +34,7 @@
     }
 </script>
 <body>
+<div class = "text"> Paste text below:</div>
 <input type = "text" id = "textToTest" style = "width: 300px;">
 <input type = "submit" id = "submitButton" value = "Check" onclick = "checkWords()">
 </body>
