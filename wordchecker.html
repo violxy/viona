@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700|Raleway:400,700,900,200' rel='stylesheet' type='text/css'>
-<script type = "text/css">
-div {
-    font-family: "Open Sans Condensed", Helvetica, "Helvetica Neue", Arial, sans-serif;
-}
-</script>
 <script type="text/javascript">
     function checkWords() {
         var testText = document.getElementById("textToTest").value;
@@ -20,7 +14,7 @@ div {
             }
             console.log(processedWord);
             if (processedWord in dictionary) {
-                var alertString = "There was a repeat, word number "+ i + ", "+ result[i];
+                var alertString = "There was a repeat at word number "+ i + ", "+ result[i] + ".";
                 alert(alertString);
                 printOkay = false;
                 break;
@@ -29,13 +23,13 @@ div {
             }
         };
         if (printOkay) {
-            alert("No repeats found.")
+            alert("No repeats found!")
         }
     }
 </script>
 <body>
 <div class = "text">Paste text below:</div>
 <input type = "text" id = "textToTest" style = "width: 300px;">
-<input type = "submit" id = "submitButton" value = "Check" onclick = "checkWords()">
+<input type = "submit" id = "submitButton" value = "Check For Repeated Words" onclick = "checkWords()">
 </body>
 </html>
