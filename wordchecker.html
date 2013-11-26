@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+    function checkWords() {
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var dictionary = {};
+        var printOkay = true;
+        for (var i = 0; i < result.length; i++) {
+            var processedWord = result[i].toLowerCase();
+            processedWord = processedWord.replace(/[^a-z]/g, '')
+            if (processedWord == "") {
+                continue;
+            }
+            console.log(processedWord);
+            if (processedWord in dictionary) {
+                var alertString = "There was a repeat, word number "+ i + ", "+ result[i];
+                alert(alertString);
+                printOkay = false;
+                break;
+            } else {
+               dictionary[processedWord] = true
+            }
+        };
+        if (printOkay) {
+            alert("No repeats found.")
+        }
+    }
+</script>
+<body>
+<input type = "text" id = "textToTest" style = "width: 300px;">
+<input type = "submit" id = "submitButton" value = "Check" onclick = "checkWords()">
+</body>
+</html>
