@@ -14,7 +14,8 @@
             }
             console.log(processedWord);
             if (processedWord in dictionary) {
-                var alertString = "There was a repeat at word number "+ (i+1) + ", "+ result[i] + ".";
+                var newIndex = i+1
+                var alertString = "There was a repeat at word number "+ newIndex + ", "+ result[i] + ".";
                 alert(alertString);
                 printOkay = false;
                 break;
