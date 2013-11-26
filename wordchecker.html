@@ -44,10 +44,15 @@
                checkingDictionary[processedWord] = true
             }
         };
+        var count = 0
         var printString = "Found repeats at:\n"
         for (var key in storingDictionary) {
+            count++;
            printString = printString + "word number "+ storingDictionary[key][0] + ", " + storingDictionary[key][1] + "\n";
         };
+        if (count == 0) {
+            printString = "No repeats found!";
+        }
         alert(printString);
     }
 </script>
