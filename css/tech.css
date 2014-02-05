@@ -5,13 +5,23 @@ body
   font-family: "Open Sans Condensed", Helvetica, "Helvetica Neue", Arial, sans-serif;
 }
 
-div#preload {
-display: none;
+div.filler
+{
+  height:10%;
 }
 
-filler
+div.content > p
 {
-  padding-top: 40px;
+  font-size: 24px;
+  line-height: 1.2em;
+}
+
+div.menu > p
+{
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffc300;
+  line-height: 2em;
 }
 
 hspecial
@@ -23,11 +33,6 @@ hspecial
   line-height: 1.5em;
 }
 
-p
-{
-  font-size: 24px;
-  line-height: 1.2em;
-}
 
 address
 {
