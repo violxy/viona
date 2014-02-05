@@ -7,66 +7,111 @@
     <link rel="stylesheet" type="text/css" href="css/tech.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700|Raleway:400,700,900,200' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="favicon.png">
-    <div id="preload">
-    	<img src="css/vio2.png">
-	<img src="css/menu.png">
-    </div>
+
+  <script language="Javascript" type="text/javascript" src="js/jquery-1.11.0.min.js">
+  </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    for (var i = 0; i < 4; i++) {
+      $("div.c"+i).hide();
+    };
+    $("div.m0").on("mouseleave",function() {
+    $("div.c0").toggle();
+    });
+    $("div.m0").on("mouseenter",function() {
+      $("div.c0").toggle();
+    });
+    $("div.m1").on("mouseleave",function() {
+    $("div.c1").toggle();
+    });
+    $("div.m1").on("mouseenter",function() {
+      $("div.c1").toggle();
+    });
+    $("div.m2").on("mouseleave",function() {
+    $("div.c2").toggle();
+    });
+    $("div.m2").on("mouseenter",function() {
+      $("div.c2").toggle();
+    });
+    $("div.m3").on("mouseleave",function() {
+    $("div.c3").toggle();
+    });
+    $("div.m3").on("mouseenter",function() {
+      $("div.c3").toggle();
+    });
+
+  });
+  </script>
  </head>
 
  <body>
   <div class="container-fluid">
-    <div id="pagemouse">
     <div class="row-fluid">
-      <ul>
-          <li id="index"><a href="index.html"></a></li>
-          <li id="CV"><a href="CV.pdf"></a></li>
-      </ul>
+      <div class="span12">
+        <center>
+        <a href="index.html"><img src="css/vio2.png"></a>
+        </center>
+      </div>
+      <div class="span12">
+      </div>
     </div>
-  </div>
     <div class="row-fluid">
       <center>
+      <div class="span2">
+      </div>
+      <div class="span2 menu m0">
+        <p>About</p>
+      </div>
+      <div class="span2 menu m1">
+        <p>Skills</p>
+      </div>
+      <div class="span2 menu m2">
+        <p>Experience</p>
+      </div>
+      <div class="span2 menu m3">
+        <p>Contact</p>
+      </div>
+      <div class="span2"></div>
+    </center>
+    </div>
+    <div class="row-fluid">
       <div class="span12">
-        <ul id="imgmenu">
-          <li id="one"><a href="#"><span>
+        <center>
+        <div class="content c0">
         <p>Harvey Mudd College</p>
         <p>Computer Science</p> 
         <p>Class of 2015</p></span></a></li>
-          <li id="two"><a href="#"><span>
+      </div>
+      <div class="content c1">
         <p>Python</p>
         <p>Java</p>
         <p>C++</p>
         <p>HTML</p>
         <p>CSS</p>
-	<p>Javascript</p>
+        <p>Javascript</p>
         <p>LaTeX</p>
-          </span></a></li>
-          <li id="three"><a href="#"><span>
-            <p>Engineering Practicum Intern</p>
-            <p>Summer '13</p>
-            <p>Google Cambridge</p>
-          </br>
-          <p>---</p>
-          </br>
-            <p>CS Grader/Tutor</p>
-            <p>Fall '12 - Spring '13</p>
-            <p>Harvey Mudd College</p>
-          </br>
-           <p>---</p>
-          </br>
-            <p>CS Student Researcher</p>
-            <p>Summer '12</p>
-            <p>Harvey Mudd College</p>
-          </span></a></li>
-          <li id="four"><a href="#"><span>
-          <p>vionaxinyi@gmail.com</p>
-          <p>github.com/violxy</p>
-          <p>linkedin.com/in/vionalam</p>
-          <p>twitter.com/violxy</p>
-        </span></a></li>
-            </span></a></li>
-        </ul>
+      </div>
+      <div class="content c2">
+        <p>Engineering Practicum Intern</p>
+        <p>Summer '13</p>
+        <p>Google Cambridge</p>
+      </br>
+       <p>---</p>
+      </br>
+        <p>CS Student Researcher</p>
+        <p>Summer '12</p>
+        <p>Harvey Mudd College</p>
+      </div>   
+      <div class="content c3">
+        <p>vionaxinyi@gmail.com</p>
+        <p>github.com/violxy</p>
+        <p>linkedin.com/in/vionalam</p>
+        <p>twitter.com/violxy</p>
+      </div>
       </div>
     </center>
     </div>
   </div>
+    
+
  </body>
