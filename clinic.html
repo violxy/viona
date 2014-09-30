@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+<style type="text/css">
+  .container{
+    width: 100%;
+  }
+  .iframes {
+    height:600px;
+    width:100%;
+  }
+  .iframe {
+    width: 49%;
+    height: 100%;
+  }
+</style>
+<script type="text/javascript">
+ function getInfo() {
+  var searchText = document.getElementById("inputtext").value;
+  var splitText = searchText.split(",");
+  return splitText;
+ }
+ function googleButton() {
+  var splitText = getInfo();
+  var contentQuery = splitText[0];
+  var locationQuery = splitText[1];
+  google(contentQuery, locationQuery);
+ }
+
+ function yelpButton() {
+  var splitText = getInfo();
+  var contentQuery = splitText[0];
+  var locationQuery = splitText[1];
+  yelp(contentQuery, locationQuery);
+ }
+
+ function bothButton() {
+  var splitText = getInfo();
+  var contentQuery = splitText[0];
+  var locationQuery = splitText[1];
+  google(contentQuery, locationQuery);
+  yelp(contentQuery, locationQuery);
+ }
+
+ function google(content, location) {
+  var url = "http://www.google.com/custom?q=" + content + location;
+  reloadIframe("googleIframe", url);
+ }
+
+ function yelp(content, location) {
+  var url = "http://www.yelp.com/search?find_desc="+ content+"&find_loc=" + location;
+  reloadIframe("yelpIframe", url);
+ }
+
+ function reloadIframe(id, url) {
+  document.getElementById(id).src = url;
+ }
+</script>
+<body>
+  <div class="container">
+    <center>
+      <div>
+        Paste content query and location query below, separated by a comma.
+      </div>
+      <div>
+        <textarea rows="1" cols="100" id="inputtext"></textarea>
+      </div>
+      <input type="submit" id="googleButton" value="Google" onclick="googleButton()">
+      <input type="submit" id="yelpButton" value="Yelp" onclick="yelpButton()">
+      <input type="submit" id="bothButton" value="Both" onclick="bothButton()">
+    </center>
+    <div class="iframes">
+      <iframe src="" id="googleIframe" class="iframe"></iframe>
+      <iframe src="" id="yelpIframe" class="iframe"></iframe>
+    </div>
+  </div>
+</body>
+</html>
