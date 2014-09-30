@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>Let Me Do That For You</title>
+<script language="Javascript" type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 <style type="text/css">
   .container{
@@ -17,6 +18,13 @@
   }
 </style>
 <script type="text/javascript">
+  $(document).keyup(function(e) {
+    if (e.keyCode==13) {
+      bothButton();  
+      e.stopPropagation();
+    }
+  });
+
   function getInfo() {
    var searchText = document.getElementById("inputtext").value;
    var splitText = searchText.split(",");
@@ -79,7 +87,7 @@
         Paste content query and location query below, separated by a comma.
       </div>
       <div>
-        <textarea rows="1" cols="100" id="inputtext"></textarea>
+        <textarea rows="2" cols="100" id="inputtext"></textarea>
       </div>
       <input type="submit" id="googleButton" value="Google" onclick="googleButton()">
       <input type="checkbox" id="maps">Use Google Maps?
