@@ -3,7 +3,11 @@
 <title>Let Me Do That For You</title>
 <script language="Javascript" type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
 <style type="text/css">
+  div {
+      font-family:"Libre Baskerville";
+  }
   .container{
     width: 100%;
   }
@@ -16,11 +20,39 @@
     height: 100%;
     border: 0;
   }
+  .selectors {
+    width: 300px;
+    text-align: left;
+  }
+  .selectors1 {
+    width: 150px;
+    float: left;
+  }
+  .selectors2 {
+    margin-left: 150px;
+  }
+
+  .buttonHolder {
+    width: 300px;
+  }
+
+  .leftButton{
+    width: 50px;
+    float: left;
+  }
+
+  .rightButton{
+    margin-left: 50px;
+  }
+
+  .bothButton {
+    margin-left: -90px;
+  }
 </style>
 <script type="text/javascript">
   $(document).keyup(function(e) {
     if (e.keyCode==13) {
-      bothButton();  
+      both();  
       e.stopPropagation();
     }
   });
@@ -31,49 +63,47 @@
    return splitText;
   }
 
-  function googleButton() {
-   var splitText = getInfo();
-   var contentQuery = splitText[0];
-   var locationQuery = splitText[1];
-   if (document.getElementById("maps").checked) {
-     maps(contentQuery, locationQuery);
-   } else {
-     google(contentQuery, locationQuery);  
+  function getUrl(side) {
+    var splitText = getInfo();
+    var content = splitText[0];
+    var location = splitText[1];
+    var yelpFront = "http://www.yelp.com/search?find_desc="
+    var yelpEnd = "&find_loc="
+    var mapsString = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBM8e2wAZ_UOVMJQ00N0zl7Mhbz7sgeABI&q="
+    var googleString = "http://www.google.com/custom?q="
+    if (document.getElementById(side+'_google').checked) {
+      return googleString + content + location;
+    } else if (document.getElementById(side+'_maps').checked) {
+      return mapsString + content + location;
+    } else if (document.getElementById(side+'_yelp').checked) {
+      return yelpFront + content + yelpEnd + location;
+    } else {
+      return false;
+    }
+  }
+  function left() {
+    var url = getUrl('left');
+    if (url) {
+      reloadIframe("leftIframe", url);
+    }
+  }
+
+  function right() {
+   var url = getUrl('right');
+   if (url) {
+    reloadIframe("rightIframe", url);
    }
   }
 
-  function yelpButton() {
-   var splitText = getInfo();
-   var contentQuery = splitText[0];
-   var locationQuery = splitText[1];
-   yelp(contentQuery, locationQuery);
-  }
-
-  function bothButton() {
-   var splitText = getInfo();
-   var contentQuery = splitText[0];
-   var locationQuery = splitText[1];
-   if (document.getElementById("maps").checked) {
-     maps(contentQuery, locationQuery);
-   } else {
-     google(contentQuery, locationQuery);  
+  function both() {
+   var leftUrl = getUrl('left');
+   var rightUrl =  getUrl('right');
+   if (leftUrl) {
+    reloadIframe("leftIframe", leftUrl);
    }
-   yelp(contentQuery, locationQuery);
-  }
-
-  function google(content, location) {
-    var url = "http://www.google.com/custom?q=" + content + location;
-    reloadIframe("googleIframe", url);
-  }
-
-  function maps(content, location) {
-   var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBM8e2wAZ_UOVMJQ00N0zl7Mhbz7sgeABI&q=" + content + location;
-   reloadIframe("googleIframe", url);
-  }
-
-  function yelp(content, location) {
-   var url = "http://www.yelp.com/search?find_desc="+ content+"&find_loc=" + location;
-   reloadIframe("yelpIframe", url);
+   if (rightUrl) {
+    reloadIframe("rightIframe", rightUrl)
+   }   
   }
 
   function reloadIframe(id, url) {
@@ -89,16 +119,32 @@
       <div>
         <textarea rows="2" cols="100" id="inputtext"></textarea>
       </div>
-      <input type="submit" id="googleButton" value="Google" onclick="googleButton()">
-      <input type="checkbox" id="maps">Use Google Maps?
-      <input type="submit" id="yelpButton" value="Yelp" onclick="yelpButton()">
-      <div>
-      <input type="submit" id="bothButton" value="Both" onclick="bothButton()">
-    </div>
+      <div class="selectors">
+        <div class="selectors1">
+          <input type="radio" name="left" id="left_google"> Google <br>
+          <input type="radio" name="left" id="left_maps"> Maps <br>
+          <input type="radio" name="left" id="left_yelp"> Yelp <br>
+        </div>
+        <div class="selectors2">
+          <input type="radio" name="right" id="right_google"> Google <br>
+          <input type="radio" name="right" id="right_maps"> Maps <br>
+          <input type="radio" name="right" id="right_yelp"> Yelp <br>
+        </div>
+      </div>
+      <div class="buttonHolder">
+        <div class="leftButton">
+          <input type="submit" id="leftButton" value="Left" onclick="left()">
+        </div>
+        <div class="rightButton">
+          <input type="submit" id="rightButton" value="Right" onclick="right()">
+        </div>
+        <input class="bothButton" type="submit" id="bothButton" value="Both" onclick="both()">
+      </div>
+      </div>
     </center>
     <div class="iframes">
-      <iframe src=""id="googleIframe" frameborder="0" class="iframe"></iframe>
-      <iframe src="" id="yelpIframe" class="iframe"></iframe>
+      <iframe src=""id="leftIframe" frameborder="0" class="iframe"></iframe>
+      <iframe src="" id="rightIframe" frameborder="0" class="iframe"></iframe>
     </div>
   </div>
 </body>
