@@ -46,8 +46,8 @@ address
 }
 
 a:link{color: #cbcbcb; text-decoration: none;}
-a:visited{color: #ffc300; text-decoration: none;}
-a:hover{color:#ffffff; text-decoration: none;}
+a:visited{color: #777; text-decoration: none;}
+a:hover{color:#fff; text-decoration: none;}
 a:active{color:#ff0000; text-decoration: none;}
 
 
