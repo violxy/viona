@@ -10,10 +10,16 @@ div.filler
   height:10%;
 }
 
-div.content > p
+div.content > *
 {
   font-size: 24px;
   line-height: 1.2em;
+}
+
+a
+{
+  font-size: 32px;
+  line-height: 1.5em;
 }
 
 div.menu > p

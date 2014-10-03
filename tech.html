@@ -12,32 +12,60 @@
   </script>
   <script type="text/javascript">
   $(document).ready(function() {
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 5; i++) {
       $("div.c"+i).hide();
     };
-    $("div.m0").on("mouseleave",function() {
-    $("div.c0").toggle();
+
+    $("div.m0").click(function() {
+      for (var i = 0; i < 5; ++i) {
+        var component = "div.c" + i;
+        if (i != 0) {
+          $(component).hide();
+        } else {
+          $(component).toggle();
+        }
+      }
     });
-    $("div.m0").on("mouseenter",function() {
-      $("div.c0").toggle();
+    $("div.m1").click(function() {
+      for (var i = 0; i < 5; ++i) {
+        var component = "div.c" + i;
+        if (i != 1) {
+          $(component).hide();
+        } else {
+          $(component).toggle();  
+        }
+      }
     });
-    $("div.m1").on("mouseleave",function() {
-    $("div.c1").toggle();
+    $("div.m2").click(function() {
+      for (var i = 0; i < 5; ++i) {
+        var component = "div.c" + i;
+        if (i != 2) {
+          $(component).hide();
+        } else {
+          $(component).toggle();  
+        }
+      }
     });
-    $("div.m1").on("mouseenter",function() {
-      $("div.c1").toggle();
+    $("div.m3").click(function() {
+      for (var i = 0; i < 5; ++i) {
+        var component = "div.c" + i;
+        if (i != 3) {
+          $(component).hide();
+        } else {
+          $(component).toggle();  
+        }
+      }
     });
-    $("div.m2").on("mouseleave",function() {
-    $("div.c2").toggle();
-    });
-    $("div.m2").on("mouseenter",function() {
-      $("div.c2").toggle();
-    });
-    $("div.m3").on("mouseleave",function() {
-    $("div.c3").toggle();
-    });
-    $("div.m3").on("mouseenter",function() {
-      $("div.c3").toggle();
+
+    $("div.m4").click(function() {
+      for (var i = 0; i < 5; ++i) {
+        var component = "div.c" + i;
+        if (i != 4) {
+          $(component).hide();
+        } else {
+          $(component).toggle();  
+        }
+      }
     });
 
   });
@@ -57,7 +85,7 @@
     </div>
     <div class="row-fluid">
       <center>
-      <div class="span2">
+      <div class="span1">
       </div>
       <div class="span2 menu m0">
         <p>About</p>
@@ -71,7 +99,10 @@
       <div class="span2 menu m3">
         <p>Contact</p>
       </div>
-      <div class="span2"></div>
+      <div class="span2 menu m4">
+        <p>Misc.</p>
+      </div>
+      <div class="span1"></div>
     </center>
     </div>
     <div class="row-fluid">
@@ -92,7 +123,7 @@
         <p>LaTeX</p>
       </div>
       <div class="content c2">
-        <p>Final Year Project PM</p>
+        <p>Final Year Project Team Lead/Project Manager</p>
         <p>Fall '14</p>
         <p>Harvey Mudd College and Yelp</p>
         <p>---</p>
@@ -113,10 +144,15 @@
         <p>Harvey Mudd College</p>
       </div>   
       <div class="content c3">
-        <p>vionaxinyi@gmail.com</p>
-        <p>github.com/violxy</p>
-        <p>linkedin.com/in/vionalam</p>
-        <p>twitter.com/violxy</p>
+        <p><a href="mailto:vionaxinyi@gmail.com">email</a>
+        <p><a href="github.com/violxy">github</a>
+        <p><a href="linkedin.com/in/vionalam">linkedin</a>
+      </div>
+      <div class="content c4">
+        <a href="/clinic.html">Side-by-side Google and Yelp Search</a>
+        <p>For use in Final Year Project</p>
+        <a href="/wordchecker.html">Unique Word Finder</a>
+        <p>For use in Fiction Writing Class</p>
       </div>
       </div>
     </center>
