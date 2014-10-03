@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<title>Repeated Word Checker</title>
 <script type="text/javascript">
     function checkWords() {
         var testText = document.getElementById("textToTest").value;
@@ -67,7 +68,8 @@
 
 </script>
 <body>
-    <input type = "text" id = "textToTest" style = "width: 300px;">
+    <textarea rows="4" cols="50" id = "textToTest">Paste Text Here.</textarea>
+    <br>
     <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
     <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">
 </body>
