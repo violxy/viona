@@ -36,7 +36,7 @@ function codeAddress() {
     if (status == google.maps.GeocoderStatus.OK) {
       document.getElementById("addressInfo").innerHTML = "Returned Address = " + results[0].formatted_address;
       document.getElementById("text").innerHTML = "Latlong = " + results[0].geometry.location;
-      document.getElementById("moreInfo").innerHTML = "Bounds = " results[0].geometry.bounds;
+      document.getElementById("moreInfo").innerHTML = "Bounds = " + results[0].geometry.bounds;
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
