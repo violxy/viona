@@ -29,6 +29,7 @@
     <script>
 var geocoder;
 var map;
+var overlayObjects = [];
 function initialize() {
   geocoder = new google.maps.Geocoder();
    var latlng = new google.maps.LatLng(-34.397, 150.644);
@@ -49,17 +50,23 @@ function codeAddress() {
       document.getElementById("moreInfo").innerHTML = "Bounds = " + results[0].geometry.bounds;
 
       map.setCenter(results[0].geometry.location);
+      while (overlayObjects[0]) {
+        overlayObjects.pop().setMap(null);
+      }
+      overlayObjects = [];
       var marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location
       });
+      overlayObjects.push(marker);
 
       var rectangle = new google.maps.Rectangle({
         map: map,
         bounds: results[0].geometry.bounds,
         fillColor: "blue",
         fillOpacity:0.1
-      })
+      });
+      overlayObjects.push(rectangle);
 
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
