@@ -56,9 +56,9 @@ function codeAddress() {
 
       var rectOptions = new google.maps.RectangleOptions({
         map: map,
-        bounds: results[0].geometry.bounds;
-        fillColor: blue;
-        fillOpacity:0.1;
+        bounds: results[0].geometry.bounds,
+        fillColor: blue,
+        fillOpacity:0.1
       })
 
       var rectangle = new google.maps.Rectangle(rectOptions);
