@@ -54,14 +54,12 @@ function codeAddress() {
           position: results[0].geometry.location
       });
 
-      var rectOptions = new google.maps.RectangleOptions({
+      var rectangle = new google.maps.Rectangle({
         map: map,
         bounds: results[0].geometry.bounds,
         fillColor: "blue",
         fillOpacity:0.1
       })
-
-      var rectangle = new google.maps.Rectangle(rectOptions);
 
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
