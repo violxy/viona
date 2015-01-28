@@ -33,7 +33,7 @@ function codeAddress() {
   var address = document.getElementById('address').value;
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      alert(results[0].geometry.location);
+      document.getElementById("text").innerHTML = "Latlong = " + results[0].geometry.location;
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -49,6 +49,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <input id="address" type="textbox" value="Sydney, NSW">
       <input type="button" value="Geocode" onclick="codeAddress()">
     </div>
-    <div id="map-canvas"></div>
+    <div id="text"></div>
   </body>
 </html>
