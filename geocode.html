@@ -24,6 +24,9 @@
         position: relative;
         left: float;
       }
+      #info {
+        z-index: 10
+      }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
@@ -84,9 +87,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <input type="button" value="Geocode" onclick="codeAddress()">
     </div>
     <div id="map-canvas"></div>
-    <div class="info" id ="queriedAddress">Queried Address</div>
-    <div class="info" id="addressInfo">Returned Address</div>
-    <div class="info" id="text">Latlong</div>
-    <div class="info" id="moreInfo">Bounds</div>
+    <div id = "info">
+      <div class="info" id ="queriedAddress">Queried Address</div>
+      <div class="info" id="addressInfo">Returned Address</div>
+      <div class="info" id="text">Latlong</div>
+      <div class="info" id="moreInfo">Bounds</div>
+    </div>
   </body>
 </html>
