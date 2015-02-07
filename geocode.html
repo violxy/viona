@@ -43,6 +43,14 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
+function addtoMySQL(geocodedInfo) {
+  var url = "geocode.php"
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.open('POST',url);
+  httpRequest.setRequestHeader('Content-Type', 'application/json');
+  httpRequest.send(geocodedInfo)
+}
+
 function codeAddress() {
   var address = document.getElementById('address').value;
   geocoder.geocode( { 'address': address}, function(results, status) {
@@ -51,6 +59,25 @@ function codeAddress() {
       document.getElementById("addressInfo").innerHTML = "Returned Address = " + results[0].formatted_address;
       document.getElementById("text").innerHTML = "Latlong = " + results[0].geometry.location;
       document.getElementById("moreInfo").innerHTML = "Bounds = " + results[0].geometry.bounds;
+      var resultHasBounds = false;
+      if (results[0].geometry.bounds) {
+        resultHasBounds = true;
+      }
+
+      var geocodedInfo = {
+        queryAddress: address,
+        formattedAddress: results[0].formatted_address,
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng(),
+        hasBounds : resultHasBounds,
+        NEBoundLat : results[0].geometry.bounds.getNorthEast().lat(),
+        NEBoundLng : results[0].geometry.bounds.getNorthEast().lng(),
+        SWBoundLat : results[0].geometry.bounds.getSouthWest().lat(),
+        SWBoundLng : results[0].geometry.bounds.getSouthWest().lng(),
+        foundGeocode : true
+      }
+
+      addtoMySQL(geocodedInfo);
 
       map.setCenter(results[0].geometry.location);
       while (overlayObjects[0]) {
@@ -80,34 +107,6 @@ function codeAddress() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-
-
-    <?php
-    $servername = "134.173.43.8";
-    $username = "clinic";
-    $password = "trickypassword";
-    $dbname = "queries";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
-
-    $sql = "SELECT locationText FROM queries WHERE tagged = 1";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "locationText: " . $row["locationText"]. "<br>";
-        }
-    } else {
-        echo "0 results";
-    }
-    $conn->close();
-    ?>
 
   </head>
   <body>
