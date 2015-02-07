@@ -44,7 +44,7 @@ function initialize() {
 }
 
 function addtoMySQL(geocodedInfo) {
-  var url = "geocode.php"
+  var url = "http://violxy.com/geocode.php"
   var httpRequest = new XMLHttpRequest();
   httpRequest.open('POST',url);
   httpRequest.setRequestHeader('Content-Type', 'application/json');
