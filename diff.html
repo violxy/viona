@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<title>Diffing Tool</title>
+<script language="Javascript" type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
+<style type="text/css">
+  div {
+      font-family:"Libre Baskerville";
+  }
+  .container{
+    width: 100%;
+  }
+  .iframes {
+    height:600px;
+    width:100%;
+  }
+  .iframe {
+    width: 49%;
+    height: 100%;
+    border: 0;
+  }
+  .selectors {
+    width: 300px;
+    text-align: left;
+  }
+  .selectors1 {
+    width: 150px;
+    float: left;
+  }
+  .selectors2 {
+    margin-left: 150px;
+  }
+
+  .buttonHolder {
+    width: 300px;
+  }
+
+  .leftButton{
+    width: 50px;
+    float: left;
+  }
+
+  .rightButton{
+    margin-left: 80px;
+  }
+
+  .bothButton {
+    margin-left: -80px;
+  }
+
+</style>
+<script type="text/javascript">
+  $(document).keyup(function(e) {
+    if (e.keyCode==13) {
+      both();  
+      e.stopPropagation();
+    }
+  });
+
+  function removeLocation(content, location) {
+    var keywords = [document.getElementById("keyword1").value, document.getElementById("keyword2").value]
+    var newContent = content;
+    var newLocation = location;
+    for (var i = 0; i < keywords.length; i++) {
+      var word = keywords[i];
+      newContent = newContent.replace(word, "");
+    };
+    for (var i = 0; i < keywords.length; i++) {
+      newLocation += " " + keywords[i];
+    };
+    console.log(newContent, newLocation);
+    return [newContent, newLocation];
+  }
+
+  function copyLocation(content, location) {
+    var keywords = [document.getElementById("keyword1").value, document.getElementById("keyword2").value]
+    var newContent = content;
+    var newLocation = location;
+    for (var i = 0; i < keywords.length; i++) {
+      newContent += " " + keywords[i];
+      newLocation += " " + keywords[i];
+    };
+    console.log(newContent, newLocation);
+    return [newContent, newLocation];
+  }
+
+  function getUrl(side) {
+    var content = document.getElementById("content").value;
+    var location = document.getElementById("location").value;
+    var yelpFront = "http://www.yelp.com/search?find_desc="
+    var yelpEnd = "&find_loc="
+    if (document.getElementById(side+'_orig').checked) {
+      var frontKeyword = document.getElementById("keyword1").value;
+      var backKeyword = document.getElementById("keyword2").value;
+      return yelpFront + frontKeyword + " " + content + " " + backKeyword + yelpEnd + location;
+    } else if (document.getElementById(side+'_remove').checked) {
+      var returnValues = removeLocation(content,location);
+      var newContent = returnValues[0];
+      var newLocation = returnValues[1];
+      return yelpFront + newContent + yelpEnd + newLocation;
+    } else if (document.getElementById(side+'_copy').checked) {
+      var returnValues = copyLocation(content,location);
+      var newContent = returnValues[0];
+      var newLocation = returnValues[1];
+      return yelpFront + newContent + yelpEnd + newLocation;
+    } else {
+      return false;
+    }
+  }
+
+  function left() {
+    var url = getUrl('left');
+    if (url) {
+      reloadIframe("leftIframe", url);
+    }
+  }
+
+  function right() {
+   var url = getUrl('right');
+   if (url) {
+    reloadIframe("rightIframe", url);
+   }
+  }
+
+  function both() {
+   var leftUrl = getUrl('left');
+   var rightUrl =  getUrl('right');
+   if (leftUrl) {
+    reloadIframe("leftIframe", leftUrl);
+   }
+   if (rightUrl) {
+    reloadIframe("rightIframe", rightUrl)
+   }   
+  }
+
+  function reloadIframe(id, url) {
+   document.getElementById(id).src = url;
+  }
+</script>
+<body>
+  <div class="container">
+    <center>
+      <div>
+        Location Keyword 1, Content, Location Keyword 2 and Location Boxes
+        <p>
+          e.g. Belltown - bar in - Seattle - WA
+        </p>
+      </div>
+      <div class="textfields">
+        <textarea rows="2" cols="30" id="keyword1"></textarea>
+        <textarea rows="2" cols="30" id="content"></textarea>
+        <textarea rows="2" cols="30" id="keyword2"></textarea>
+        <textarea rows="2" cols="30" id="location"></textarea>
+      </div>
+      <p>
+      <div class="selectors">
+        <div class="selectors1">
+          <input type="radio" name="left" id="left_orig"> Original <br>
+          <input type="radio" name="left" id="left_remove"> Remove <br>
+          <input type="radio" name="left" id="left_copy"> Copy <br>
+        </div>
+        <div class="selectors2">
+          <input type="radio" name="right" id="right_orig"> Original <br>
+          <input type="radio" name="right" id="right_remove"> Remove <br>
+          <input type="radio" name="right" id="right_copy"> Copy <br>
+        </div>
+      </div>
+      <div class="buttonHolder">
+        <div class="leftButton">
+          <input type="submit" id="leftButton" value="Load Left" onclick="left()">
+        </div>
+        <div class="rightButton">
+          <input type="submit" id="rightButton" value="Load Right" onclick="right()">
+        </div>
+        <input class="bothButton" type="submit" id="bothButton" value="Load Both" onclick="both()">
+      </div>
+      </div>
+    </center>
+    <div class="iframes">
+      <iframe src=""id="leftIframe" frameborder="0" class="iframe"></iframe>
+      <iframe src="" id="rightIframe" frameborder="0" class="iframe"></iframe>
+    </div>
+  </div>
+</body>
+</html>
