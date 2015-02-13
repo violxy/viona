@@ -58,6 +58,18 @@
     }
   });
 
+  function sendRequest(content, location) {
+    var url = ""
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.open('POST',url);
+    httpRequest.setRequestHeader('Content-Type', 'application/json');
+    var requestString = {
+      content: content,
+      location: location
+    }
+    httpRequest.send(requestString);
+  }
+
   function removeLocation(content, location) {
     var keywords = [document.getElementById("keyword1").value, document.getElementById("keyword2").value]
     var newContent = content;
@@ -90,9 +102,8 @@
     var location = document.getElementById("location").value;
     var yelpFront = "http://www.yelp.com/search?find_desc="
     var yelpEnd = "&find_loc="
+    var foundLocations = sendRequest(content,location);
     if (document.getElementById(side+'_orig').checked) {
-      var frontKeyword = document.getElementById("keyword1").value;
-      var backKeyword = document.getElementById("keyword2").value;
       return yelpFront + frontKeyword + " " + content + " " + backKeyword + yelpEnd + location;
     } else if (document.getElementById(side+'_remove').checked) {
       var returnValues = removeLocation(content,location);
@@ -148,9 +159,7 @@
         </p>
       </div>
       <div class="textfields">
-        <textarea rows="2" cols="30" id="keyword1"></textarea>
         <textarea rows="2" cols="30" id="content"></textarea>
-        <textarea rows="2" cols="30" id="keyword2"></textarea>
         <textarea rows="2" cols="30" id="location"></textarea>
       </div>
       <p>
