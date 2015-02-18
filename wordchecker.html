@@ -63,10 +63,10 @@
         var printString = "Found 'o' at: \n";
         for (var i = 0; i < result.length; i++) {
             var word = result[i]
+            var wordAdded = false;
             for (var j = 0; j < word.length; j++) {
-                var wordAdded = false;
                 if ((word[j] == 'o' | word[j] == 'O') && !wordAdded)  {
-                    printString += word;
+                    printString += word + "\n";
                     wordAdded = true;
                 }
             };
@@ -76,10 +76,10 @@
     }
 </script>
 <body>
-    <textarea rows="4" cols="50" id = "textToTest">Paste Text Here.</textarea>
+    <textarea rows="4" cols="55" id = "textToTest" placeholder="Paste Text Here."></textarea>
     <br>
     <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
     <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">
-    <input type = "submit" id = "findAllButton" value = "Finds 'O's" onclick = "findO()">
+    <input type = "submit" id = "findOButton" value = "Finds 'O's" onclick = "findO()">
 </body>
 </html>
