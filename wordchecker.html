@@ -56,21 +56,30 @@
         }
         alert(printString);
     }
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-48286565-1', 'violxy.com');
-  ga('send', 'pageview');
-
+    function findO() {
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var printString = "Found 'o' at: \n";
+        for (var i = 0; i < result.length; i++) {
+            var word = result[i]
+            for (var j = 0; j < word.length; j++) {
+                var wordAdded = false;
+                if ((word[j] == 'o' | word[j] == 'O') && !wordAdded)  {
+                    printString += word;
+                    wordAdded = true;
+                }
+            };
+            
+        };
+        alert(printString);
+    }
 </script>
 <body>
     <textarea rows="4" cols="50" id = "textToTest">Paste Text Here.</textarea>
     <br>
     <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
     <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">
+    <input type = "submit" id = "findAllButton" value = "Finds 'O's" onclick = "findO()">
 </body>
 </html>
