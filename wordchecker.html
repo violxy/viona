@@ -25,8 +25,8 @@
         };
         if (printOkay) {
             alert("No repeats found!")
-        }
-    }
+        
+}    }
     function checkAllWords() {
         var testText = document.getElementById("textToTest").value;
         var result = testText.split(" ");
@@ -61,6 +61,7 @@
         var testText = document.getElementById("textToTest").value;
         var result = testText.split(" ");
         var printString = "Found 'o' at: \n";
+        var found = false;
         for (var i = 0; i < result.length; i++) {
             var word = result[i]
             var wordAdded = false;
@@ -68,11 +69,15 @@
                 if ((word[j] == 'o' | word[j] == 'O') && !wordAdded)  {
                     printString += word + "\n";
                     wordAdded = true;
+                    found = true;
                 }
             };
-            
         };
-        alert(printString);
+        if (found) {
+            alert(printString);
+        } else {
+            alert("No 'O's found!");
+        };
     }
 </script>
 <body>
