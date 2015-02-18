@@ -79,14 +79,71 @@
             alert("No 'O's found!");
         };
     }
+
+    function findToBeWords() {
+        dictionary = {
+           "be":true,
+           "am":true,
+           "is":true,
+           "are":true,
+           "was":true,
+           "were":true,
+           "been":true,
+           "has":true,
+           "have":true,
+           "had":true,
+           "do":true,
+           "did":true,
+           "does":true,
+           "can":true,
+           "could":true,
+           "shall":true,
+           "should":true,
+           "will":true,
+           "would":true,
+           "may":true,
+           "might":true,
+           "must":true,
+        }
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var printString = "at: \n";
+        var found = false;
+        var foundContraction = false;
+        for (var i = 0; i < result.length; i++) {
+            var word = result[i]
+            if (word in dictionary) {
+                printString += word + "\n";
+                found = true;    
+            }
+            else {
+                var test = word.match(/.*\'.*/);
+                if (test) {
+                    printString += word + "\n"
+                    foundContraction = true;
+                }
+            }
+        };
+        if (found) {
+            alert("Found to be " +printString);
+        } else if (foundContraction) {
+            alert("found Contraction " +printString);
+        } else {
+            alert("To Be Verbs not found!");
+        };
+    }
 </script>
 <body>
     <textarea rows="4" cols="55" id = "textToTest" placeholder="Paste Text Here."></textarea>
     <br>
-    <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
-    <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">
     <input type = "submit" id = "findOButton" value = "Finds 'O's" onclick = "findO()">
+    <br>
+    <input type = "submit" id = "findToBeButton" value = "Finds To Be Words" onclick = "findToBeWords()">
+    <br>
+    <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
+    <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">    
     <p>
     <a href="http://www.thesaurus.com" target="_blank">Helpful Link</a>
+    <p> Note that contractions usually hide to be verbs. Some don't, like y'all, but will still be found by this algorithm. Sorry. </p>
 </body>
 </html>
