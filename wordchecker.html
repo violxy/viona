@@ -25,8 +25,8 @@
         };
         if (printOkay) {
             alert("No repeats found!")
-        }
-    }
+        
+}    }
     function checkAllWords() {
         var testText = document.getElementById("textToTest").value;
         var result = testText.split(" ");
@@ -56,21 +56,94 @@
         }
         alert(printString);
     }
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-48286565-1', 'violxy.com');
-  ga('send', 'pageview');
+    function findO() {
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var printString = "Found 'o' at: \n";
+        var found = false;
+        for (var i = 0; i < result.length; i++) {
+            var word = result[i]
+            var wordAdded = false;
+            for (var j = 0; j < word.length; j++) {
+                if ((word[j] == 'o' | word[j] == 'O') && !wordAdded)  {
+                    printString += word + "\n";
+                    wordAdded = true;
+                    found = true;
+                }
+            };
+        };
+        if (found) {
+            alert(printString);
+        } else {
+            alert("No 'O's found!");
+        };
+    }
 
+    function findToBeWords() {
+        dictionary = {
+           "be":true,
+           "am":true,
+           "is":true,
+           "are":true,
+           "was":true,
+           "were":true,
+           "been":true,
+           "has":true,
+           "have":true,
+           "had":true,
+           "do":true,
+           "did":true,
+           "does":true,
+           "can":true,
+           "could":true,
+           "shall":true,
+           "should":true,
+           "will":true,
+           "would":true,
+           "may":true,
+           "might":true,
+           "must":true,
+        }
+        var testText = document.getElementById("textToTest").value;
+        var result = testText.split(" ");
+        var printString = "at: \n";
+        var found = false;
+        var foundContraction = false;
+        for (var i = 0; i < result.length; i++) {
+            var word = result[i]
+            if (word in dictionary) {
+                printString += word + "\n";
+                found = true;    
+            }
+            else {
+                var test = word.match(/.*\'.*/);
+                if (test) {
+                    printString += word + "\n"
+                    foundContraction = true;
+                }
+            }
+        };
+        if (found) {
+            alert("Found to be " +printString);
+        } else if (foundContraction) {
+            alert("found Contraction " +printString);
+        } else {
+            alert("To Be Verbs not found!");
+        };
+    }
 </script>
 <body>
-    <textarea rows="4" cols="50" id = "textToTest">Paste Text Here.</textarea>
+    <textarea rows="4" cols="55" id = "textToTest" placeholder="Paste Text Here."></textarea>
     <br>
-    <input type = "submit" id = "submitButton" value = "Gives the First Repeated Word" onclick = "checkWords()">
-    <input type = "submit" id = "findAllButton" value = "Gives All Repeated Words" onclick = "checkAllWords()">
+    <input type = "submit" id = "findOButton" value = "Finds 'O's" onclick = "findO()">
+    <br>
+    <input type = "submit" id = "findToBeButton" value = "Finds To Be Words" onclick = "findToBeWords()">
+    <br>
+    <input type = "submit" id = "submitButton" value = "Finds the First Repeated Word" onclick = "checkWords()">
+    <input type = "submit" id = "findAllButton" value = "Finds All Repeated Words" onclick = "checkAllWords()">    
+    <p>
+    <a href="http://www.thesaurus.com" target="_blank">Helpful Link</a>
+    <p> Note that contractions usually hide to be verbs. Some don't, like y'all and o'clock, but will still be found by this algorithm. Sorry. </p>
 </body>
 </html>
