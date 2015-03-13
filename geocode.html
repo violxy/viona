@@ -35,20 +35,41 @@ var map;
 var overlayObjects = [];
 function initialize() {
   geocoder = new google.maps.Geocoder();
-   var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var mapOptions = {
-    zoom: 8,
-    center: latlng
-  }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  //  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  // var mapOptions = {
+  //   zoom: 8,
+  //   center: latlng
+  // }
+  // map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
 function addtoMySQL(geocodedInfo) {
   var url = "http://violxy.com/geocode.php"
   var httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST',url);
-  httpRequest.setRequestHeader('Content-Type', 'application/json');
+  httpRequest.open('POST',url)
+;  httpRequest.setRequestHeader('Content-Type', 'application/json');
   httpRequest.send(geocodedInfo)
+}
+
+function geocode() {
+  var lines = $('address').val().split('\n');
+  for(var i = 0;i < lines.length;i++){
+    var line = line[i];
+    geocoder.geocode( { 'address': location}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var foundCity;
+        for (var i = 0; i < results[0].address_components.length; i++) {
+          if(results[0].address_components[i].types.indexOf(cityString) >= 0) {
+            foundCity = results[0].address_components[i].long_name;
+          }
+        };
+          var isCity = (results[0].types.indexOf(cityString) >= 0);
+          var isNeighborhood = (results[0].types.indexOf(neighborhoodString) >= 0);
+          var isAddress= (results[0].types.indexOf(neighborhoodString) >= 0);
+        };
+  console.log(i+", "+ line +", " + isCity + ", "+ isNeighborhood + ", " + isAddress);  
+  });
+}
 }
 
 function codeAddress() {
@@ -56,6 +77,11 @@ function codeAddress() {
   geocoder.geocode( { 'address': address}, function(results, status) {
     document.getElementById("queriedAddress").innerHTML = "Queried Address = "+ address;
     if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results[0].types);
+      console.log(results[0].address_components[0].types);
+      for (var i = 0; i < results[0].address_components.length; i++) {
+        console.log(results[0].address_components[i]);
+      };
       document.getElementById("addressInfo").innerHTML = "Returned Address = " + results[0].formatted_address;
       document.getElementById("text").innerHTML = "Latlong = " + results[0].geometry.location;
       document.getElementById("moreInfo").innerHTML = "Bounds = " + results[0].geometry.bounds;
@@ -77,26 +103,26 @@ function codeAddress() {
         foundGeocode : true
       }
 
-      addtoMySQL(geocodedInfo);
+      // addtoMySQL(geocodedInfo);
 
-      map.setCenter(results[0].geometry.location);
-      while (overlayObjects[0]) {
-        overlayObjects.pop().setMap(null);
-      }
-      overlayObjects = [];
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      overlayObjects.push(marker);
+      // map.setCenter(results[0].geometry.location);
+      // while (overlayObjects[0]) {
+      //   overlayObjects.pop().setMap(null);
+      // }
+      // overlayObjects = [];
+      // var marker = new google.maps.Marker({
+      //     map: map,
+      //     position: results[0].geometry.location
+      // });
+      // overlayObjects.push(marker);
 
-      var rectangle = new google.maps.Rectangle({
-        map: map,
-        bounds: results[0].geometry.bounds,
-        fillColor: "blue",
-        fillOpacity:0.1
-      });
-      overlayObjects.push(rectangle);
+      // var rectangle = new google.maps.Rectangle({
+      //   map: map,
+      //   bounds: results[0].geometry.bounds,
+      //   fillColor: "blue",
+      //   fillOpacity:0.1
+      // });
+      // overlayObjects.push(rectangle);
 
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
@@ -111,7 +137,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </head>
   <body>
     <div id="panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
+     <textarea rows="10" cols="30" id="address"></textarea>
       <input type="button" value="Geocode" onclick="codeAddress()">
     </div>
     <div id = "info">
